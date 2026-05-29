@@ -1,285 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Birthday Surprise</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Wish</title>
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-    }
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Poppins',sans-serif;
+}
 
-    body {
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: linear-gradient(135deg, #0f172a, #1e3a8a, #38bdf8);
-      color: white;
-      transition: 1s;
-    }
+body{
+  height:100vh;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(135deg,#0f172a,#1e3a8a,#38bdf8);
+  color:white;
+}
 
-    .container {
-      width: 90%;
-      max-width: 700px;
-      background: rgba(255,255,255,0.12);
-      backdrop-filter: blur(12px);
-      border-radius: 25px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
-      animation: fadeIn 1s ease;
-      position: relative;
-      z-index: 2;
-    }
+.container{
+  width:90%;
+  max-width:750px;
+  padding:40px;
+  border-radius:25px;
+  background:rgba(255,255,255,0.1);
+  backdrop-filter:blur(12px);
+  box-shadow:0 8px 30px rgba(0,0,0,0.3);
+  text-align:center;
+  animation:fadeIn 1s ease;
+  position:relative;
+  z-index:2;
+}
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-      animation: glow 2s infinite alternate;
-    }
+h1{
+  font-size:3rem;
+  margin-bottom:20px;
+  text-shadow:0 0 15px #93c5fd;
+}
 
-    h2 {
-      margin-bottom: 25px;
-      font-size: 1.6rem;
-    }
+h2{
+  margin-bottom:25px;
+  font-size:1.6rem;
+}
 
-    p {
-      font-size: 1.1rem;
-      margin-top: 15px;
-      line-height: 1.7;
-    }
+p{
+  font-size:1.1rem;
+  line-height:1.8;
+}
 
-    .moods {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-      gap: 15px;
-      margin-top: 25px;
-    }
+.buttons{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+  gap:15px;
+  margin-top:30px;
+}
 
-    button {
-      padding: 14px 22px;
-      border: none;
-      border-radius: 40px;
-      background: white;
-      color: #2563eb;
-      font-size: 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s ease;
-    }
+button{
+  padding:14px 20px;
+  border:none;
+  border-radius:40px;
+  background:white;
+  color:#2563eb;
+  font-weight:bold;
+  cursor:pointer;
+  transition:0.3s;
+}
 
-    button:hover {
-      transform: scale(1.08);
-      background: #dbeafe;
-    }
+button:hover{
+  transform:scale(1.08);
+  background:#dbeafe;
+}
 
-    .hidden {
-      display: none;
-    }
+.hidden{
+  display:none;
+}
 
-    .cake {
-      font-size: 6rem;
-      margin-top: 20px;
-      animation: bounce 2s infinite;
-    }
+.teddy{
+  font-size:5rem;
+  animation:bounce 2s infinite;
+  margin-top:20px;
+}
 
-    .balloon {
-      position: absolute;
-      bottom: -120px;
-      width: 60px;
-      height: 80px;
-      border-radius: 50%;
-      animation: float 10s linear infinite;
-      z-index: 1;
-    }
+.balloon{
+  position:absolute;
+  bottom:-120px;
+  width:60px;
+  height:80px;
+  border-radius:50%;
+  animation:float 9s linear infinite;
+}
 
-    .balloon::after {
-      content: '';
-      position: absolute;
-      width: 2px;
-      height: 60px;
-      background: white;
-      top: 80px;
-      left: 50%;
-    }
+.balloon::after{
+  content:'';
+  width:2px;
+  height:60px;
+  background:white;
+  position:absolute;
+  top:80px;
+  left:50%;
+}
 
-    .final-message {
-      margin-top: 25px;
-      font-size: 1.2rem;
-      line-height: 1.9;
-      animation: fadeIn 2s ease;
-    }
+.cake-container{
+  margin-top:25px;
+}
 
-    @keyframes float {
-      from {
-        transform: translateY(0) rotate(0deg);
-        opacity: 1;
-      }
-      to {
-        transform: translateY(-120vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
+.cake{
+  font-size:7rem;
+}
 
-    @keyframes glow {
-      from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #60a5fa;
-      }
-      to {
-        text-shadow: 0 0 20px #fff, 0 0 40px #3b82f6;
-      }
-    }
+.flame{
+  font-size:2rem;
+  animation:flicker 0.6s infinite alternate;
+}
 
-    @keyframes bounce {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-12px);
-      }
-    }
+.message-line{
+  opacity:0;
+  margin-top:15px;
+  font-size:1.2rem;
+  animation:fadeText 1s forwards;
+}
 
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-  </style>
+@keyframes fadeIn{
+  from{opacity:0;transform:translateY(20px);}
+  to{opacity:1;transform:translateY(0);}
+}
+
+@keyframes bounce{
+  0%,100%{transform:translateY(0);}
+  50%{transform:translateY(-12px);}
+}
+
+@keyframes float{
+  from{transform:translateY(0) rotate(0deg);opacity:1;}
+  to{transform:translateY(-120vh) rotate(360deg);opacity:0;}
+}
+
+@keyframes flicker{
+  from{transform:scale(1);opacity:1;}
+  to{transform:scale(1.2);opacity:0.7;}
+}
+
+@keyframes fadeText{
+  from{opacity:0;transform:translateY(10px);}
+  to{opacity:1;transform:translateY(0);}
+}
+</style>
 </head>
 <body>
 
-  <div class="container">
+<div class="container">
 
-    <!-- STEP 1 -->
-    <div id="step1">
-      <h1>✨ Hey There ✨</h1>
-      <h2>How are you feeling today?</h2>
+<!-- PAGE 1 -->
+<div id="page1">
+  <h1>💙 Hey You 💙</h1>
+  <h2>Well... How are you feeling today?</h2>
 
-      <div class="moods">
-        <button onclick="nextStep()">😊 Happy</button>
-        <button onclick="nextStep()">😔 Sad</button>
-        <button onclick="nextStep()">😴 Tired</button>
-        <button onclick="nextStep()">😎 Excited</button>
-        <button onclick="nextStep()">🤔 Confused</button>
-      </div>
-    </div>
+  <div class="buttons">
+    <button onclick="showComfort()">😔 Sad</button>
+    <button onclick="showComfort()">😴 Tired</button>
+    <button onclick="showComfort()">😕 Confused</button>
+    <button onclick="showComfort()">😣 Stressed</button>
+    <button onclick="showComfort()">🥺 Emotional</button>
+  </div>
+</div>
 
-    <!-- STEP 2 -->
-    <div id="step2" class="hidden">
-      <h1>💖 Anyhow... 💖</h1>
-      <p>
-        Don't worry, there is something special for you.
-      </p>
+<!-- PAGE 2 -->
+<div id="comfortPage" class="hidden">
+  <h1>🫂</h1>
+  <p>
+    I know you are upset... and I am really sorry for that.
+  </p>
 
-      <br>
+  <div class="teddy">🧸🧸🧸</div>
 
-      <h2>Do you remember what is today?</h2>
+  <br>
+  <button onclick="nextPage()">Continue</button>
+</div>
 
-      <div class="moods">
-        <button onclick="showYes()">🎉 Yes</button>
-        <button onclick="showNo()">🤭 No</button>
-      </div>
-    </div>
+<!-- PAGE 3 -->
+<div id="page3" class="hidden">
+  <h1>✨ Refreshment Time ✨</h1>
 
-    <!-- STEP 3 YES -->
-    <div id="yesSection" class="hidden">
-      <h1>🥳 That's Great! 🥳</h1>
-      <p>You already know today is your special day!</p>
+  <p>
+    Anyhow... here is a little refreshment for you 💙
+  </p>
 
-      <br>
-      <button onclick="birthdayWish()">Open Birthday Wish</button>
-    </div>
+  <br>
 
-    <!-- STEP 3 NO -->
-    <div id="noSection" class="hidden">
-      <h1>✨ Let Me Remind You ✨</h1>
-      <p>Today is one of the most beautiful days because...</p>
+  <h2>Do you remember what is today?</h2>
 
-      <br>
-      <button onclick="birthdayWish()">Reveal Surprise</button>
-    </div>
+  <div class="buttons">
+    <button onclick="yesAnswer()">🎉 Yes</button>
+    <button onclick="noAnswer()">🤔 No</button>
+  </div>
+</div>
 
-    <!-- FINAL -->
-    <div id="finalSection" class="hidden">
-      <h1>🎂 Happy Birthday 🎂</h1>
+<!-- YES PAGE -->
+<div id="yesPage" class="hidden">
+  <h1>🥳 Congratulations!</h1>
+  <p>You remembered the special day 💖</p>
 
-      <button onclick="showSurprise()">Open Surprise</button>
+  <br>
+  <button onclick="showCake()">Reveal Surprise</button>
+</div>
 
-      <div id="surpriseContent" class="hidden">
-        <div class="cake">🎂</div>
+<!-- NO PAGE -->
+<div id="noPage" class="hidden">
+  <h1>💙 Don't Worry 💙</h1>
 
-        <div class="final-message">
-          🎉 Many Many Happy Birthday! 🎉
-          <br><br>
-          Thank you for being there and helping me a lot.
-          <br>
-          You helped me move forward in life.
-          <br><br>
-          I met a truly beautiful soul. 💖
-        </div>
-      </div>
-    </div>
+  <p>
+    I'm here to remind you that today is a special person's birthday 🎂
+  </p>
 
+  <br>
+  <button onclick="showCake()">Reveal Surprise</button>
+</div>
+
+<!-- CAKE PAGE -->
+<div id="cakePage" class="hidden">
+  <h1>🎂 Happy Birthday 🎂</h1>
+
+  <div class="cake-container">
+    <div id="flame" class="flame">🔥</div>
+    <div class="cake">🎂</div>
   </div>
 
-  <script>
-    function nextStep() {
-      document.getElementById('step1').classList.add('hidden');
-      document.getElementById('step2').classList.remove('hidden');
-    }
+  <br>
 
-    function showYes() {
-      document.getElementById('step2').classList.add('hidden');
-      document.getElementById('yesSection').classList.remove('hidden');
-    }
+  <button onclick="blowCandle()">Click To Blow Candle</button>
 
-    function showNo() {
-      document.getElementById('step2').classList.add('hidden');
-      document.getElementById('noSection').classList.remove('hidden');
-    }
+  <div id="birthdayText"></div>
 
-    function birthdayWish() {
-      document.getElementById('yesSection').classList.add('hidden');
-      document.getElementById('noSection').classList.add('hidden');
-      document.getElementById('finalSection').classList.remove('hidden');
-    }
+  <br>
+  <div id="nextMessageButton" class="hidden">
+    <button onclick="showFinalMessage()">I Have Something To Say</button>
+  </div>
+</div>
 
-    function showSurprise() {
-      document.getElementById('surpriseContent').classList.remove('hidden');
+<!-- FINAL PAGE -->
+<div id="finalPage" class="hidden">
+  <h1>💖</h1>
 
-      for (let i = 0; i < 30; i++) {
-        createBalloon();
+  <p style="font-size:1.3rem; margin-top:20px;">
+    Thank you for being there.<br><br>
+    Thank you for helping me to move forward.<br><br>
+    I met a beautiful soul. 💙
+  </p>
+</div>
+
+</div>
+
+<script>
+function showComfort(){
+  document.getElementById('page1').classList.add('hidden');
+  document.getElementById('comfortPage').classList.remove('hidden');
+}
+
+function nextPage(){
+  document.getElementById('comfortPage').classList.add('hidden');
+  document.getElementById('page3').classList.remove('hidden');
+}
+
+function yesAnswer(){
+  document.getElementById('page3').classList.add('hidden');
+  document.getElementById('yesPage').classList.remove('hidden');
+}
+
+function noAnswer(){
+  document.getElementById('page3').classList.add('hidden');
+  document.getElementById('noPage').classList.remove('hidden');
+}
+
+function showCake(){
+  document.getElementById('yesPage').classList.add('hidden');
+  document.getElementById('noPage').classList.add('hidden');
+  document.getElementById('cakePage').classList.remove('hidden');
+
+  for(let i=0;i<25;i++){
+    createBalloon();
+  }
+}
+
+function blowCandle(){
+  document.getElementById('flame').style.display='none';
+
+  const lines = [
+    '🎵 HAPPY BIRTHDAY TO YOU',
+    '🎵 HAPPY BIRTHDAY TO YOU',
+    '🎵 HAPPY BIRTHDAY DEAR',
+    '🎵 HAPPY BIRTHDAY TO YOUUUUUUUU',
+    '💙 KEEP MOVING AND KEEP SMILING 💙'
+  ];
+
+  const container = document.getElementById('birthdayText');
+  container.innerHTML='';
+
+  lines.forEach((line,index)=>{
+    setTimeout(()=>{
+      const p = document.createElement('p');
+      p.classList.add('message-line');
+      p.innerText=line;
+      container.appendChild(p);
+
+      if(index===lines.length-1){
+        document.getElementById('nextMessageButton').classList.remove('hidden');
       }
-    }
 
-    function createBalloon() {
-      const balloon = document.createElement('div');
-      balloon.classList.add('balloon');
+    },index*2000);
+  });
+}
 
-      const colors = ['#60a5fa', '#3b82f6', '#0ea5e9', '#38bdf8', '#2563eb', '#93c5fd'];
-      balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+function showFinalMessage(){
+  document.getElementById('finalPage').classList.remove('hidden');
+}
 
-      balloon.style.left = Math.random() * window.innerWidth + 'px';
-      balloon.style.animationDuration = (5 + Math.random() * 5) + 's';
+function createBalloon(){
+  const balloon=document.createElement('div');
+  balloon.classList.add('balloon');
 
-      document.body.appendChild(balloon);
+  const colors=['#60a5fa','#3b82f6','#0ea5e9','#38bdf8','#2563eb','#93c5fd'];
 
-      setTimeout(() => {
-        balloon.remove();
-      }, 10000);
-    }
-  </script>
+  balloon.style.background=colors[Math.floor(Math.random()*colors.length)];
+  balloon.style.left=Math.random()*window.innerWidth+'px';
+  balloon.style.animationDuration=(5+Math.random()*5)+'s';
+
+  document.body.appendChild(balloon);
+
+  setTimeout(()=>{
+    balloon.remove();
+  },10000);
+}
+</script>
 
 </body>
 </html>
