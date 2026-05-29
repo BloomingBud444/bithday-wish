@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Birthday Surprise</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a, #38bdf8);
+      color: white;
+      transition: 1s;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 700px;
+      background: rgba(255,255,255,0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 25px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+      animation: fadeIn 1s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+      animation: glow 2s infinite alternate;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-size: 1.6rem;
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-top: 15px;
+      line-height: 1.7;
+    }
+
+    .moods {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 15px;
+      margin-top: 25px;
+    }
+
+    button {
+      padding: 14px 22px;
+      border: none;
+      border-radius: 40px;
+      background: white;
+      color: #2563eb;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      background: #dbeafe;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .cake {
+      font-size: 6rem;
+      margin-top: 20px;
+      animation: bounce 2s infinite;
+    }
+
+    .balloon {
+      position: absolute;
+      bottom: -120px;
+      width: 60px;
+      height: 80px;
+      border-radius: 50%;
+      animation: float 10s linear infinite;
+      z-index: 1;
+    }
+
+    .balloon::after {
+      content: '';
+      position: absolute;
+      width: 2px;
+      height: 60px;
+      background: white;
+      top: 80px;
+      left: 50%;
+    }
+
+    .final-message {
+      margin-top: 25px;
+      font-size: 1.2rem;
+      line-height: 1.9;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+      }
+      to {
+        transform: translateY(-120vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #60a5fa;
+      }
+      to {
+        text-shadow: 0 0 20px #fff, 0 0 40px #3b82f6;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-12px);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- STEP 1 -->
+    <div id="step1">
+      <h1>✨ Hey There ✨</h1>
+      <h2>How are you feeling today?</h2>
+
+      <div class="moods">
+        <button onclick="nextStep()">😊 Happy</button>
+        <button onclick="nextStep()">😔 Sad</button>
+        <button onclick="nextStep()">😴 Tired</button>
+        <button onclick="nextStep()">😎 Excited</button>
+        <button onclick="nextStep()">🤔 Confused</button>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div id="step2" class="hidden">
+      <h1>💖 Anyhow... 💖</h1>
+      <p>
+        Don't worry, there is something special for you.
+      </p>
+
+      <br>
+
+      <h2>Do you remember what is today?</h2>
+
+      <div class="moods">
+        <button onclick="showYes()">🎉 Yes</button>
+        <button onclick="showNo()">🤭 No</button>
+      </div>
+    </div>
+
+    <!-- STEP 3 YES -->
+    <div id="yesSection" class="hidden">
+      <h1>🥳 That's Great! 🥳</h1>
+      <p>You already know today is your special day!</p>
+
+      <br>
+      <button onclick="birthdayWish()">Open Birthday Wish</button>
+    </div>
+
+    <!-- STEP 3 NO -->
+    <div id="noSection" class="hidden">
+      <h1>✨ Let Me Remind You ✨</h1>
+      <p>Today is one of the most beautiful days because...</p>
+
+      <br>
+      <button onclick="birthdayWish()">Reveal Surprise</button>
+    </div>
+
+    <!-- FINAL -->
+    <div id="finalSection" class="hidden">
+      <h1>🎂 Happy Birthday 🎂</h1>
+
+      <button onclick="showSurprise()">Open Surprise</button>
+
+      <div id="surpriseContent" class="hidden">
+        <div class="cake">🎂</div>
+
+        <div class="final-message">
+          🎉 Many Many Happy Birthday! 🎉
+          <br><br>
+          Thank you for being there and helping me a lot.
+          <br>
+          You helped me move forward in life.
+          <br><br>
+          I met a truly beautiful soul. 💖
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function nextStep() {
+      document.getElementById('step1').classList.add('hidden');
+      document.getElementById('step2').classList.remove('hidden');
+    }
+
+    function showYes() {
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('yesSection').classList.remove('hidden');
+    }
+
+    function showNo() {
+      document.getElementById('step2').classList.add('hidden');
+      document.getElementById('noSection').classList.remove('hidden');
+    }
+
+    function birthdayWish() {
+      document.getElementById('yesSection').classList.add('hidden');
+      document.getElementById('noSection').classList.add('hidden');
+      document.getElementById('finalSection').classList.remove('hidden');
+    }
+
+    function showSurprise() {
+      document.getElementById('surpriseContent').classList.remove('hidden');
+
+      for (let i = 0; i < 30; i++) {
+        createBalloon();
+      }
+    }
+
+    function createBalloon() {
+      const balloon = document.createElement('div');
+      balloon.classList.add('balloon');
+
+      const colors = ['#60a5fa', '#3b82f6', '#0ea5e9', '#38bdf8', '#2563eb', '#93c5fd'];
+      balloon.style.background = colors[Math.floor(Math.random() * colors.length)];
+
+      balloon.style.left = Math.random() * window.innerWidth + 'px';
+      balloon.style.animationDuration = (5 + Math.random() * 5) + 's';
+
+      document.body.appendChild(balloon);
+
+      setTimeout(() => {
+        balloon.remove();
+      }, 10000);
+    }
+  </script>
+
+</body>
+</html>
